@@ -10,8 +10,13 @@ interface PhoneNumberInputProps {
   placeholder: string
 }
 
+interface PasswordInputProps {
+  labelText: string;
+  showForgotPassword?: boolean
+}
 
-export const PasswordInput = ({ labelText }: { labelText: string }) => {
+
+export const PasswordInput = ({ labelText, showForgotPassword }: PasswordInputProps) => {
   return (
     <View>
       <Text style={{ color: '#535353', paddingLeft: 8, paddingVertical: 4, fontSize: 12 }}>
@@ -21,7 +26,7 @@ export const PasswordInput = ({ labelText }: { labelText: string }) => {
         mode='outlined'
         secureTextEntry
         // right={<TextInput.Icon icon="eye" />}
-        placeholder="Password"
+        placeholder="Enter your password"
         outlineStyle={{
           borderRadius: 24,
           borderWidth: 1,
@@ -29,9 +34,9 @@ export const PasswordInput = ({ labelText }: { labelText: string }) => {
           height: 55,
           borderColor: "#878787",
         }}
-        contentStyle={{ width: "100%", fontSize: 14, color: "#434343" }}
+        contentStyle={{ width: "100%", fontSize: 14, color: "#646464" }}
       />
-      <TouchableOpacity activeOpacity={.7}>
+      {showForgotPassword && <TouchableOpacity activeOpacity={.7}>
         <Text style={{
           color: '#535353',
           paddingRight: 8,
@@ -41,7 +46,7 @@ export const PasswordInput = ({ labelText }: { labelText: string }) => {
         }}>
           Forgot Password
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </View>
   )
 }
@@ -58,7 +63,7 @@ export const PhoneNumberInput = (props: PhoneNumberInputProps) => {
         layout="first"
         containerStyle={styles.phoneInputStyle}
         textContainerStyle={styles.textContainerStyle}
-        textInputStyle={{ ...styles.textStyle, fontSize: 14, color: "#434343" }}
+        textInputStyle={{ ...styles.textStyle, fontSize: 14, color: "#646464" }}
         codeTextStyle={{ ...styles.textStyle, fontSize: 14 }}
         flagButtonStyle={styles.flagButtonStyle}
         onChangeCountry={(country) => {

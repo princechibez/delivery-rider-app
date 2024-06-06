@@ -23,7 +23,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     async function prepare() {
       try {
         // get onboard data
-        const boarded = await AsyncStorage.getItem("onboarded")
+        const boarded = await AsyncStorage.getItem("onBoarded")
         const authenticated = await AsyncStorage.getItem("isAuthenticated")
         setIsBoarded(boarded)
         setIsAuthenticated(authenticated)
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
   // user boarding handler... used for saving boarding data
   const userOnboardHandler = async (conditionChecked: boolean) => {
     try {
-      await AsyncStorage.setItem("onboarded", "true")
+      await AsyncStorage.setItem("onBoarded", "true")
       setIsBoarded("true")
       router.push("(auth)")
     } catch (err) {

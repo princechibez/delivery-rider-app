@@ -1,8 +1,7 @@
-import { PasswordInput, PhoneNumberInput } from '@/components/input';
+import { PhoneNumberInput } from '@/components/input';
 import { useState } from 'react';
 import {
     Dimensions,
-    Image,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -11,8 +10,8 @@ import {
     View
 } from 'react-native'
 import { Button, Text, useTheme } from 'react-native-paper'
-import GoogleIcon from '../../assets/images/googleIcon.png'
-import AppleIcon from '../../assets/images/appleIcon.png'
+// import GoogleIcon from '../../assets/images/googleIcon.png'
+// import AppleIcon from '../../assets/images/appleIcon.png'
 import { useRouter } from 'expo-router';
 
 const windowHeight = Dimensions.get('window').height
@@ -68,18 +67,20 @@ const Register = () => {
                         <View style={styles.Auth2Section}>
                             <Button mode='outlined'
                                 onPress={() => { }}
+                                icon="google"
                                 style={{
                                     width: '100%', padding: 4, borderRadius: 24, borderWidth: 1, borderColor: "#C9C9C9",
                                 }}>
-                                <Image source={GoogleIcon} style={{ paddingRight: 24 }} />
+                                {/* <Image source={GoogleIcon} /> */}
                                 <Text>  Continue with Google</Text>
                             </Button>
                             <Button mode='outlined'
                                 onPress={() => { }}
+                                icon="apple"
                                 style={{
                                     width: '100%', padding: 4, borderRadius: 24, borderWidth: 1, borderColor: "#C9C9C9",
                                 }}>
-                                <Image source={AppleIcon} />
+                                {/* <Image source={AppleIcon} /> */}
                                 <Text>  Continue with Apple</Text>
                             </Button>
 
