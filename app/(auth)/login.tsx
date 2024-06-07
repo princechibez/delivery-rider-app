@@ -1,4 +1,4 @@
-import { PasswordInput, PhoneNumberInput } from '@/components/input';
+import { PasswordInput, PhoneNumberInput, TextInput } from '@/components/input';
 import { useContext, useState } from 'react';
 import {
     Dimensions,
@@ -11,8 +11,8 @@ import {
     View
 } from 'react-native'
 import { Button, Text, useTheme } from 'react-native-paper'
-import GoogleIcon from '../../assets/images/googleIcon.png'
-import AppleIcon from '../../assets/images/appleIcon.png'
+// import GoogleIcon from '../../assets/images/googleIcon.png'
+// import AppleIcon from '../../assets/images/appleIcon.png'
 import { useRouter } from 'expo-router';
 import { AuthContext } from '@/context/auth';
 
@@ -53,7 +53,7 @@ const Login = () => {
                             value={phoneNumber}
                             placeholder="Mobile Number"
                             setCountry={setCountry} />
-                        <PasswordInput labelText='Password*' />
+                        <PasswordInput labelText='Password*' showForgotPassword />
                         <Button mode='contained'
                             onPress={() => { setAuthenticationStatus() }}
                             style={{
@@ -72,19 +72,21 @@ const Login = () => {
                         <View style={styles.Auth2Section}>
                             <Button mode='outlined'
                                 onPress={() => { }}
+                                icon="google"
                                 style={{
                                     width: '100%', padding: 4, borderRadius: 24, borderWidth: 1, borderColor: "#C9C9C9",
                                 }}>
-                                <Image source={GoogleIcon} style={{ paddingRight: 24 }} />
-                                <Text>  Continue with Google</Text>
+                                {/* <Image source={GoogleIcon} /> */}
+                                <Text>Continue with Google</Text>
                             </Button>
                             <Button mode='outlined'
                                 onPress={() => { }}
+                                icon="apple"
                                 style={{
                                     width: '100%', padding: 4, borderRadius: 24, borderWidth: 1, borderColor: "#C9C9C9",
                                 }}>
-                                <Image source={AppleIcon} />
-                                <Text>  Continue with Apple</Text>
+                                {/* <Image source={AppleIcon} /> */}
+                                <Text>Continue with Apple</Text>
                             </Button>
 
                             <TouchableOpacity activeOpacity={.5} style={{ marginVertical: 14, alignSelf: 'center' }}>
@@ -117,7 +119,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerText: {
-        paddingVertical: 18,
+        paddingVertical: 24,
         textAlign: 'center'
     },
     inputContainer: {

@@ -1,5 +1,5 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native"
-import { Text, TextInput } from "react-native-paper"
+import { Text, TextInput as Input, useTheme } from "react-native-paper"
 import PhoneInput from "react-native-phone-number-input";
 
 interface PhoneNumberInputProps {
@@ -10,28 +10,34 @@ interface PhoneNumberInputProps {
   placeholder: string
 }
 
+interface PasswordInputProps {
+  labelText: string;
+  showForgotPassword?: boolean
+}
 
-export const PasswordInput = ({ labelText }: { labelText: string }) => {
+type Props = React.ComponentProps<typeof Input> & { errorText?: string; labelText: string };
+
+
+// const theme = useTheme();
+
+
+export const PasswordInput = ({ labelText, showForgotPassword }: PasswordInputProps) => {
   return (
     <View>
-      <Text style={{ color: '#535353', paddingLeft: 8, paddingVertical: 4, fontSize: 12 }}>
+      <Text style={styles.labelStyle}>
         {labelText}
       </Text>
-      <TextInput
+      <Input
         mode='outlined'
         secureTextEntry
+        underlineColor="transparent"
+        selectionColor={useTheme().colors.secondary}
         // right={<TextInput.Icon icon="eye" />}
-        placeholder="Password"
-        outlineStyle={{
-          borderRadius: 24,
-          borderWidth: 1,
-          elevation: 2,
-          height: 55,
-          borderColor: "#878787",
-        }}
-        contentStyle={{ width: "100%", fontSize: 14, color: "#434343" }}
+        placeholder="Enter your password"
+        outlineStyle={styles.outlineStyles}
+        contentStyle={styles.contentStyle}
       />
-      <TouchableOpacity activeOpacity={.7}>
+      {showForgotPassword && <TouchableOpacity activeOpacity={.7}>
         <Text style={{
           color: '#535353',
           paddingRight: 8,
@@ -41,7 +47,7 @@ export const PasswordInput = ({ labelText }: { labelText: string }) => {
         }}>
           Forgot Password
         </Text>
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </View>
   )
 }
@@ -49,16 +55,16 @@ export const PasswordInput = ({ labelText }: { labelText: string }) => {
 export const PhoneNumberInput = (props: PhoneNumberInputProps) => {
   return (
     <View>
-      <Text style={{ color: '#535353', paddingLeft: 8, paddingVertical: 4, fontSize: 12 }}>
+      <Text style={styles.labelStyle}>
         {props.labelText}
       </Text>
       <PhoneInput
         value={props.value}
         defaultCode="NG"
         layout="first"
-        containerStyle={styles.phoneInputStyle}
+        containerStyle={styles.phoneContainerStyle}
         textContainerStyle={styles.textContainerStyle}
-        textInputStyle={{ ...styles.textStyle, fontSize: 14, color: "#434343" }}
+        textInputStyle={{ ...styles.textStyle, fontSize: 14, color: "#646464" }}
         codeTextStyle={{ ...styles.textStyle, fontSize: 14 }}
         flagButtonStyle={styles.flagButtonStyle}
         onChangeCountry={(country) => {
@@ -73,14 +79,51 @@ export const PhoneNumberInput = (props: PhoneNumberInputProps) => {
   )
 }
 
+export const TextInput = ({ errorText, labelText, ...props }: Props) => (
+  <View>
+    <Text style={styles.labelStyle}>
+      {labelText}
+    </Text>
+    <Input
+      outlineStyle={styles.outlineStyles}
+      contentStyle={styles.contentStyle}
+      selectionColor={useTheme().colors.secondary}
+      underlineColor="transparent"
+      mode="outlined"
+      {...props}
+    />
+    {errorText ? <Text style={{ ...styles.labelStyle, ...styles.error }}>{errorText}</Text> : null}
+  </View>
+);
+
 const styles = StyleSheet.create({
-  phoneInputStyle: {
+  outlineStyles: {
+    borderRadius: 24,
+    borderWidth: 1,
+    elevation: 2,
+    height: 55,
+  },
+  contentStyle: {
+    width: "100%",
+    fontSize: 14,
+    color: "#646464"
+  },
+  phoneContainerStyle: {
     width: '100%',
     height: 55,
-    borderColor: "#F97B0E",
+    // borderColor: "#F97B0E",
     borderRadius: 24,
     borderWidth: 1,
     elevation: 2
+  },
+  error: {
+    color: "#FF5C00",
+  },
+  labelStyle: {
+    color: '#535353',
+    paddingLeft: 8,
+    paddingVertical: 4,
+    fontSize: 12
   },
   textContainerStyle: {
     borderTopRightRadius: 24,

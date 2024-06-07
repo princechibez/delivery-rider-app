@@ -2,6 +2,8 @@ import { useRouter, useSegments } from "expo-router";
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Splashscreen from 'expo-splash-screen'
+import { useFonts } from 'expo-font'
+import Rubik from '../assets/fonts/Rubik-Regular.ttf'
 
 Splashscreen.preventAutoHideAsync();
 
@@ -10,6 +12,10 @@ export const AuthContext = createContext<any>(null);
 const AuthProvider = ({ children }: React.PropsWithChildren) => {
   const rootSegment = useSegments()[0]
   const router = useRouter()
+
+  const [fontsLoaded, fontError] = useFonts({
+    'Rubik': Rubik,
+  });
 
   const [appIsReady, setAppIsReady] = useState(false)
   const [isBoarded, setIsBoarded] = useState<string | null>(null)
@@ -23,7 +29,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     async function prepare() {
       try {
         // get onboard data
-        const boarded = await AsyncStorage.getItem("onboarded")
+        const boarded = await AsyncStorage.getItem("onBoarded")
         const authenticated = await AsyncStorage.getItem("isAuthenticated")
         setIsBoarded(boarded)
         setIsAuthenticated(authenticated)
@@ -44,7 +50,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     async function checkIfAppIsReady() {
       if (!appIsReady) return
 
-      if (appIsReady) {
+      if (appIsReady && (fontsLoaded || fontError)) {
         await Splashscreen.hideAsync()
       }
     }
@@ -62,13 +68,13 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     else if (isAuthenticated && rootSegment !== "(tabs)") {
       router.replace("/(tabs)")
     }
-  }, [appIsReady, isBoarded, isAuthenticated, rootSegment])
+  }, [appIsReady, isBoarded, isAuthenticated, fontsLoaded, fontError, rootSegment])
 
 
   // user boarding handler... used for saving boarding data
   const userOnboardHandler = async (conditionChecked: boolean) => {
     try {
-      await AsyncStorage.setItem("onboarded", "true")
+      await AsyncStorage.setItem("onBoarded", "true")
       setIsBoarded("true")
       router.push("(auth)")
     } catch (err) {
@@ -81,7 +87,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     try {
       await AsyncStorage.setItem("isAuthenticated", "true")
       setIsAuthenticated("true")
-      router.push("(tabs)")
+      router.replace("(tabs)")
     } catch (err) {
       // error saving data...
     }
