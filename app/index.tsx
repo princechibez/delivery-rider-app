@@ -75,7 +75,7 @@ const Styles = StyleSheet.create({
     width: windowWidth,
     paddingVertical: 12,
     paddingHorizontal: 8,
-    alignItems: 'flex-start',
+    // alignItems: 'flex-start',
     gap: 18
   },
   headerText: {
@@ -89,8 +89,10 @@ const Styles = StyleSheet.create({
     paddingBottom: 12,
   },
   privacyText: {
-    fontSize: 11,
-    color: "#7F7F7F"
+    fontSize: 10,
+    color: "#7F7F7F",
+    maxWidth: "95%",
+    lineHeight: 14,
   }
 })
 

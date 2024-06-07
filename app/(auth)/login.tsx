@@ -1,4 +1,4 @@
-import { PasswordInput, PhoneNumberInput } from '@/components/input';
+import { PasswordInput, PhoneNumberInput, TextInput } from '@/components/input';
 import { useContext, useState } from 'react';
 import {
     Dimensions,
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerText: {
-        paddingVertical: 18,
+        paddingVertical: 24,
         textAlign: 'center'
     },
     inputContainer: {

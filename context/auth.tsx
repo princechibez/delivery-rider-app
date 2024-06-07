@@ -2,6 +2,8 @@ import { useRouter, useSegments } from "expo-router";
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Splashscreen from 'expo-splash-screen'
+import { useFonts } from 'expo-font'
+import Rubik from '../assets/fonts/Rubik-Regular.ttf'
 
 Splashscreen.preventAutoHideAsync();
 
@@ -10,6 +12,10 @@ export const AuthContext = createContext<any>(null);
 const AuthProvider = ({ children }: React.PropsWithChildren) => {
   const rootSegment = useSegments()[0]
   const router = useRouter()
+
+  const [fontsLoaded, fontError] = useFonts({
+    'Rubik': Rubik,
+  });
 
   const [appIsReady, setAppIsReady] = useState(false)
   const [isBoarded, setIsBoarded] = useState<string | null>(null)
@@ -44,7 +50,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     async function checkIfAppIsReady() {
       if (!appIsReady) return
 
-      if (appIsReady) {
+      if (appIsReady && (fontsLoaded || fontError)) {
         await Splashscreen.hideAsync()
       }
     }
@@ -62,7 +68,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     else if (isAuthenticated && rootSegment !== "(tabs)") {
       router.replace("/(tabs)")
     }
-  }, [appIsReady, isBoarded, isAuthenticated, rootSegment])
+  }, [appIsReady, isBoarded, isAuthenticated, fontsLoaded, fontError, rootSegment])
 
 
   // user boarding handler... used for saving boarding data
@@ -81,7 +87,7 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     try {
       await AsyncStorage.setItem("isAuthenticated", "true")
       setIsAuthenticated("true")
-      router.push("(tabs)")
+      router.replace("(tabs)")
     } catch (err) {
       // error saving data...
     }

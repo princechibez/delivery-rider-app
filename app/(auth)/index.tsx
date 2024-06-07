@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerText: {
-        paddingVertical: 18,
+        paddingVertical: 24,
         textAlign: 'center'
     },
     inputContainer: {
