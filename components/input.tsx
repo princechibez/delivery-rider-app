@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { StyleSheet, TouchableOpacity, View } from "react-native"
 import { Text, TextInput as Input, useTheme } from "react-native-paper"
 import PhoneInput from "react-native-phone-number-input";
@@ -22,6 +23,8 @@ type Props = React.ComponentProps<typeof Input> & { errorText?: string; labelTex
 
 
 export const PasswordInput = ({ labelText, showForgotPassword }: PasswordInputProps) => {
+  const router = useRouter()
+
   return (
     <View>
       <Text style={styles.labelStyle}>
@@ -29,6 +32,8 @@ export const PasswordInput = ({ labelText, showForgotPassword }: PasswordInputPr
       </Text>
       <Input
         mode='outlined'
+        underlineColorAndroid="transparent"
+        placeholderTextColor="#646464"
         secureTextEntry
         underlineColor="transparent"
         selectionColor={useTheme().colors.secondary}
@@ -37,7 +42,7 @@ export const PasswordInput = ({ labelText, showForgotPassword }: PasswordInputPr
         outlineStyle={styles.outlineStyles}
         contentStyle={styles.contentStyle}
       />
-      {showForgotPassword && <TouchableOpacity activeOpacity={.7}>
+      {showForgotPassword && <TouchableOpacity activeOpacity={.7} onPress={() => router.push("(auth)/verification")}>
         <Text style={{
           color: '#535353',
           paddingRight: 8,
@@ -86,6 +91,8 @@ export const TextInput = ({ errorText, labelText, ...props }: Props) => (
     </Text>
     <Input
       outlineStyle={styles.outlineStyles}
+      placeholderTextColor="#646464"
+      underlineColorAndroid="transparent"
       contentStyle={styles.contentStyle}
       selectionColor={useTheme().colors.secondary}
       underlineColor="transparent"
@@ -121,7 +128,7 @@ const styles = StyleSheet.create({
   },
   labelStyle: {
     color: '#535353',
-    paddingLeft: 8,
+    // paddingLeft: 8,
     paddingVertical: 4,
     fontSize: 12
   },

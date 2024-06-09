@@ -9,8 +9,6 @@ import {
     View
 } from 'react-native'
 import { Button, Text, useTheme } from 'react-native-paper'
-// import GoogleIcon from '../../assets/images/googleIcon.png'
-// import AppleIcon from '../../assets/images/appleIcon.png'
 import { useRouter } from 'expo-router';
 // import PassMeter from "react-native-passmeter";
 
@@ -49,7 +47,15 @@ const CreatePassword = () => {
                         /> */}
 
                         <Button mode='contained'
-                            onPress={() => router.push("(auth)/authSuccessful")}
+                            onPress={() => router.push({
+                                pathname: "(auth)/successPage", params: {
+                                    headText: "Awesome!",
+                                    message: "Your MOTOSPRINT account has been created successfully, please set up your profile to get verified",
+                                    buttonText: "Continue",
+                                    showButton: "true",
+                                    nextScreen: "(auth)/profileSetup"
+                                }
+                            })}
                             style={{
                                 backgroundColor: theme.colors.primary,
                                 width: '100%', padding: 4, marginTop: 24

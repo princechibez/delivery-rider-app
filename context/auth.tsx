@@ -7,6 +7,8 @@ import Rubik from '../assets/fonts/Rubik-Regular.ttf'
 
 Splashscreen.preventAutoHideAsync();
 
+// AsyncStorage.clear()
+
 export const AuthContext = createContext<any>(null);
 
 const AuthProvider = ({ children }: React.PropsWithChildren) => {
@@ -19,10 +21,9 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
 
   const [appIsReady, setAppIsReady] = useState(false)
   const [isBoarded, setIsBoarded] = useState<string | null>(null)
+  const [alreadyAUser, setAlreadyAUser] = useState<string | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState<string | null>(null)
   const [user, setUser] = useState<string | null>(null)
-
-  // AsyncStorage.clear()
 
   // Load and prepare app and then set app is ready
   useEffect(() => {
@@ -31,8 +32,10 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
         // get onboard data
         const boarded = await AsyncStorage.getItem("onBoarded")
         const authenticated = await AsyncStorage.getItem("isAuthenticated")
+        const isAlreadyAUser = await AsyncStorage.getItem("isAlreadyAUser")
         setIsBoarded(boarded)
         setIsAuthenticated(authenticated)
+        setAlreadyAUser(isAlreadyAUser)
 
         // get authentication data
         // ...
@@ -59,16 +62,16 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     if (!isBoarded && rootSegment !== "/") {
       router.replace("/")
     }
-    else if (!isAuthenticated && isBoarded && rootSegment !== "(auth)") {
+    else if (!isAuthenticated && alreadyAUser && rootSegment !== "(auth)") {
       router.replace("/(auth)/login")
     }
-    else if (!isAuthenticated && rootSegment !== "(auth)") {
+    else if (!isAuthenticated && !alreadyAUser && rootSegment !== "(auth)") {
       router.replace("/(auth)")
     }
     else if (isAuthenticated && rootSegment !== "(tabs)") {
       router.replace("/(tabs)")
     }
-  }, [appIsReady, isBoarded, isAuthenticated, fontsLoaded, fontError, rootSegment])
+  }, [appIsReady, isBoarded, isAuthenticated, alreadyAUser, fontsLoaded, fontError, rootSegment])
 
 
   // user boarding handler... used for saving boarding data
@@ -76,14 +79,27 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     try {
       await AsyncStorage.setItem("onBoarded", "true")
       setIsBoarded("true")
-      router.push("(auth)")
+      router.replace("(auth)")
     } catch (err) {
       // error saving data...
     }
   }
 
   // user authentication handler... used for saving auth data
-  const userAuthenticationHandler = async () => {
+  const registerHandler = async () => {
+    try {
+      await AsyncStorage.setItem("isAlreadyAUser", "true")
+      await AsyncStorage.setItem("isAuthenticated", "true")
+      setIsAuthenticated("true")
+      setAlreadyAUser("true")
+      // router.replace("(tabs)")
+    } catch (err) {
+      // error saving data...
+    }
+  }
+
+  // user authentication handler... used for saving auth data
+  const loginHandler = async () => {
     try {
       await AsyncStorage.setItem("isAuthenticated", "true")
       setIsAuthenticated("true")
@@ -93,10 +109,19 @@ const AuthProvider = ({ children }: React.PropsWithChildren) => {
     }
   }
 
+  const logoutHandler = () => {
+    AsyncStorage.removeItem("isAuthenticated")
+    setIsAuthenticated(null)
+    setUser(null)
+    router.replace("(auth)/login")
+  }
+
   return (
     <AuthContext.Provider value={{
       user: user,
-      setAuthenticationStatus: userAuthenticationHandler,
+      signin: loginHandler,
+      signup: registerHandler,
+      signout: logoutHandler,
       setUserBoarding: userOnboardHandler
     }}>
       {children}

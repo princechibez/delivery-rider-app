@@ -1,8 +1,7 @@
-import { PasswordInput, PhoneNumberInput, TextInput } from '@/components/input';
+import { PasswordInput, PhoneNumberInput } from '@/components/input';
 import { useContext, useState } from 'react';
 import {
     Dimensions,
-    Image,
     SafeAreaView,
     ScrollView,
     StatusBar,
@@ -16,13 +15,13 @@ import { Button, Text, useTheme } from 'react-native-paper'
 import { useRouter } from 'expo-router';
 import { AuthContext } from '@/context/auth';
 
-const windowHeight = Dimensions.get('window').height
+// const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
 
 const Login = () => {
     const theme = useTheme();
     const router = useRouter();
-    const { setAuthenticationStatus } = useContext(AuthContext)
+    const { signin } = useContext(AuthContext)
 
     const [phoneNumber, setPhoneNumber] = useState("")
     const [password, setPassword] = useState("")
@@ -55,7 +54,7 @@ const Login = () => {
                             setCountry={setCountry} />
                         <PasswordInput labelText='Password*' showForgotPassword />
                         <Button mode='contained'
-                            onPress={() => { setAuthenticationStatus() }}
+                            onPress={() => { signin() }}
                             style={{
                                 backgroundColor: theme.colors.primary,
                                 width: '100%', padding: 4, marginTop: 4

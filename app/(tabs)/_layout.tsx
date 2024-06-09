@@ -23,6 +23,7 @@ const TabsLayout = () => {
             tabBarActiveTintColor: "#FF5C00",
             tabBarInactiveTintColor: "#636363",
             tabBarShowLabel: false,
+            tabBarHideOnKeyboard: true,
             tabBarStyle: {
                 height: 80,
                 display: 'flex',
@@ -50,10 +51,11 @@ const TabsLayout = () => {
                     )
                 }}
             />
-            <Tabs.Screen name="messages"
+            <Tabs.Screen name="message"
                 options={{
-                    title: 'My Message',
-                    headerTitle: "Message",
+                    headerShown: false,
+                    title: 'Message',
+                    headerTitle: "My Messages",
                     tabBarIcon: ({ color, focused }) => (
                         <Image source={focused ? ChatActive : Chat} />
                     )

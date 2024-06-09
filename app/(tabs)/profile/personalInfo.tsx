@@ -2,14 +2,13 @@ import { Dimensions, Image, ImageBackground, StyleSheet, TouchableOpacity, View 
 import { Button, Text } from 'react-native-paper'
 import * as ImagePicker from 'expo-image-picker'
 
-import Avatar from '../../assets/images/avatar.png'
-import AddPicture from '../../assets/images/addPicture.png'
+import Avatar from '../../../assets/images/avatar.jpg'
+import AddPicture from '../../../assets/images/addPicture.png'
 import { useState } from 'react'
 import { FontAwesome5, Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 
 
-const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
 
 const PersonalInfo = () => {
@@ -65,7 +64,7 @@ const PersonalInfo = () => {
                         <FontAwesome5 name="user" size={18} color="black" />
                         <Text variant='labelLarge'>Daniel Ndubisi</Text>
                     </View>
-                    <Button onPress={() => { router.push("(auth)/updateName") }} mode='text'>Edit</Button>
+                    <Button onPress={() => { router.push("profile/updateName") }} mode='text'>Edit</Button>
                 </View>
                 {/* phone number */}
                 <View style={styles.cardStyle}>
@@ -73,7 +72,7 @@ const PersonalInfo = () => {
                         <Ionicons name="call-outline" size={18} color="black" />
                         <Text variant='labelLarge'>+2347067421332</Text>
                     </View>
-                    <Button onPress={() => { router.push("(auth)/updatePhone") }} mode='text'>Edit</Button>
+                    <Button onPress={() => { router.push("profile/updatePhone") }} mode='text'>Edit</Button>
                 </View>
                 {/* email address */}
                 <View style={styles.cardStyle}>
@@ -81,16 +80,16 @@ const PersonalInfo = () => {
                         <Ionicons name="mail-outline" size={18} color="black" />
                         <Text variant='labelLarge'>daniel.ndubisi@gmail.com</Text>
                     </View>
-                    <Button onPress={() => { router.push("(auth)/updateEmail") }} mode='text'>Edit</Button>
+                    <Button onPress={() => { router.push("profile/updateEmail") }} mode='text'>Edit</Button>
                 </View>
                 {/* language */}
-                <View style={{ ...styles.cardStyle, borderBottomWidth: 0 }}>
+                {/* <View style={{ ...styles.cardStyle, borderBottomWidth: 0 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                         <FontAwesome5 name="flag" size={18} color="black" />
                         <Text variant='labelLarge'>Language</Text>
                     </View>
                     <Button onPress={() => { router.push("(auth)/language") }} mode='text'>Edit</Button>
-                </View>
+                </View> */}
             </View>
         </View>
     )

@@ -19,7 +19,7 @@ const longitudeDelta = latitudeDelta * ASPECT_RATIO;
 
 const CustomMapView = ({ openModal }: MapViewProps) => {
     const mapRef = useRef();
-    // const [location, setLocation] = useState<null | Location.LocationObject>(null)
+    const [permissionStatus, setPermissionStatus] = useState<any>()
     const [coordinates, setCoordinates] = useState({
         latitude: 0,
         longitude: 0,
@@ -30,21 +30,32 @@ const CustomMapView = ({ openModal }: MapViewProps) => {
     useEffect(() => {
         (async () => {
 
-            let { status } = await Location.requestForegroundPermissionsAsync();
+            try {
+                let { status } = await Location.requestForegroundPermissionsAsync();
+                setPermissionStatus(status)
 
-            if (status !== 'granted') {
-                setTimeout(() => {
-                    Linking.openSettings()
-                }, 2000);
-                if (Platform.OS === 'android') {
-                    ToastAndroid.show('Please enable location', ToastAndroid.SHORT);
+                if (status !== 'granted') {
+                    setTimeout(() => {
+                        Linking.openSettings()
+                    }, 2000);
+                    if (Platform.OS === 'android') {
+                        ToastAndroid.show('Please enable location', ToastAndroid.SHORT);
+                    }
+                    return;
                 }
-                return;
+            } catch (err) {
+                console.log(err)
             }
 
-            let location = await Location.getCurrentPositionAsync({});
-            const { latitude, longitude } = location.coords
-            setCoordinates({ ...coordinates, latitude, longitude });
+            try {
+                let location = await Location.getCurrentPositionAsync({ accuracy: 6, });
+                const { latitude, longitude } = location.coords
+                setCoordinates({ ...coordinates, latitude, longitude, latitudeDelta, longitudeDelta });
+            } catch (err) {
+                let location = await Location.getCurrentPositionAsync({ accuracy: 6, });
+                const { latitude, longitude } = location.coords
+                setCoordinates({ ...coordinates, latitude, longitude, latitudeDelta, longitudeDelta });
+            }
         })()
     }, [])
 
@@ -56,11 +67,11 @@ const CustomMapView = ({ openModal }: MapViewProps) => {
             style={styles.map}
             region={coordinates}
             showsUserLocation={true}
-            showsCompass={false}
+            showsCompass
             loadingEnabled={true}>
             <Marker onPress={openModal} coordinate={coordinates}>
                 {/* <Image source={MarkerImage} /> */}
-                <LottieView
+                < LottieView
                     autoPlay
                     // speed={1.4}
                     style={{
@@ -71,7 +82,7 @@ const CustomMapView = ({ openModal }: MapViewProps) => {
                 />
             </Marker>
         </MapView>
-    ), [coordinates])
+    ), [permissionStatus, coordinates])
 
     return (
         <>

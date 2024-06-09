@@ -42,6 +42,7 @@ export default RootLayout
 
 /**
  * Storage keys:--
- * onboarded: "true",
- * isAuthenticated: "true",
+ * onboarded: "true | false",
+ * isAuthenticated: "true | false",
+ * isAlreadyAUser: "true | false"
  */

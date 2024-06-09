@@ -10,8 +10,8 @@ import {
 } from 'react-native'
 import { Button, RadioButton, Text, useTheme } from 'react-native-paper'
 import { useRouter } from 'expo-router';
-import French from '../../assets/images/french.png'
-import English from "../../assets/images/english.png"
+import French from '../../../assets/images/french.png'
+import English from "../../../assets/images/english.png"
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
