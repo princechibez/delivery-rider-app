@@ -30,7 +30,7 @@ const Verification = () => {
             Keyboard.dismiss()
             isValid = true
         }
-        return isValid
+        return true
     }
 
     return (

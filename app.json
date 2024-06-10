@@ -16,7 +16,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.motosprint.app",
       "config": {
-        "googleMapsApiKey": ""
+        "googleMapsApiKey": "AIzaSyAK6YqKih6dm2m1yUT4jR3l7oz_ppWNgPc"
       }
     },
     "android": {
@@ -26,7 +26,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": ""
+          "apiKey": "AIzaSyAK6YqKih6dm2m1yUT4jR3l7oz_ppWNgPc"
         }
       }
     },

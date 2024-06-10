@@ -12,7 +12,7 @@ import {
 import { Button, RadioButton, Text, useTheme } from 'react-native-paper'
 import { useRouter } from 'expo-router';
 import { AntDesign } from '@expo/vector-icons';
-import WhatsappIcon from '../../assets/images/whatsapp.png'
+import WhatsappIcon from '../../../assets/images/whatsapp.png'
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width

@@ -10,9 +10,9 @@ import {
 } from 'react-native'
 import { Button, Text, useTheme } from 'react-native-paper'
 import { useRouter } from 'expo-router';
-import GoogleIcon from "../../assets/images/googleIcon.png"
-import FacebookIcon from '../../assets/images/facebookIcon.png'
-import AppleIcon from '../../assets/images/appleIcon.png'
+import GoogleIcon from "../../../assets/images/googleIcon.png"
+import FacebookIcon from '../../../assets/images/facebookIcon.png'
+import AppleIcon from '../../../assets/images/appleIcon.png'
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
@@ -45,7 +45,7 @@ const SecuritySetting = () => {
 
                     <TouchableOpacity activeOpacity={.5}
                         onPress={() => setOption("french")}
-                        style={{ ...styles.cardStyle, borderBottomWidth: 0 }}>
+                        style={styles.cardStyle}>
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                             <Image source={FacebookIcon} />
                             <Text>Facebook</Text>

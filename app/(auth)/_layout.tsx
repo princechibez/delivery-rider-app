@@ -22,25 +22,21 @@ const AuthLayout = () => {
       <Stack.Screen name="createPassword" options={{ headerTitle: "Create Password" }} />
 
       {/* Primary authentication Success */}
-      <Stack.Screen name="authSuccessful" options={{ headerShown: false }} />
+      <Stack.Screen name="successPage" options={{ headerShown: false }} />
 
-      {/* personal info */}
-      <Stack.Screen name="personalInfo" options={{ headerTitle: "Personal Info" }} />
+      {/* Rider profile setup */}
+      <Stack.Screen name="profileSetup"
+        options={{
+          headerTitle: "Set up your account",
+          headerBackVisible: false
+        }} />
 
-      {/* language selection */}
-      <Stack.Screen name="language" options={{ headerTitle: "Language" }} />
+      {/* Vehicle details a.k.a Vehicle registration number */}
+      <Stack.Screen name="vehicleDetails" options={{ headerTitle: "Vehicle Details" }} />
 
-      {/* update name screen */}
-      <Stack.Screen name="updateName" options={{ headerTitle: "Your Name" }} />
+      {/* Vehicle information */}
+      <Stack.Screen name="vehicleInfo" options={{ headerTitle: "Vehicle Information" }} />
 
-      {/* update phone number */}
-      <Stack.Screen name="updatePhone" options={{ headerTitle: "Phone Number" }} />
-
-      {/* update email */}
-      <Stack.Screen name="updateEmail" options={{ headerTitle: "Email Address" }} />
-
-      {/* security settings */}
-      <Stack.Screen name="securitySettings" options={{ headerTitle: "Security Settings" }} />
     </Stack>
   )
 }
