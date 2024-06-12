@@ -33,7 +33,7 @@ const SuccessPage = () => {
                 Your Vehicle Information has been updated successfully
             </Text>
             <Button mode='contained'
-                onPress={() => router.push("/profile")}
+                onPress={() => router.replace("/profile")}
                 style={{
                     backgroundColor: theme.colors.primary,
                     width: '100%', padding: 4, marginTop: 4

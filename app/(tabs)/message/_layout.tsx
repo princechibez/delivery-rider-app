@@ -16,7 +16,7 @@ const MessageLayout = () => {
                 headerTitleStyle: {
                     fontSize: 20,
                     fontWeight: "medium",
-                    // fontFamily: "Rubik"
+                    fontFamily: "Rubik"
                 }
             }} />
 

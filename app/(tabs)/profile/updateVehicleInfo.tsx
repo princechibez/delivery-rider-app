@@ -46,16 +46,16 @@ const VehicleInfo = () => {
                     {/* User input field */}
                     <View style={styles.formField}>
                         {/* vehicle make */}
-                        <TextInput labelText='Make*' placeholder='Suzuki CB1100' autoFocus />
+                        <TextInput labelText='Make*' placeholder='Suzuki CB1100' />
 
                         {/* vehicle model */}
                         <TextInput labelText='Model*' placeholder='Yamaha SR400' />
 
                         {/* vehicle year */}
-                        <TextInput labelText='Year*' placeholder='2021' autoFocus />
+                        <TextInput labelText='Year*' placeholder='2021' />
 
                         {/* vehicle color */}
-                        <TextInput labelText='Color*' placeholder='Black' autoFocus />
+                        <TextInput labelText='Color*' placeholder='Black' />
 
                         {/* vehicle's year of purchase */}
                         <TextInput labelText='Year of purchase*' placeholder='2023' />
@@ -110,7 +110,7 @@ const VehicleInfo = () => {
                         />
 
                         <Button mode='contained'
-                            onPress={() => { router.push("profile/successPage") }}
+                            onPress={() => { router.replace("profile/successPage") }}
                             style={{
                                 backgroundColor: theme.colors.primary,
                                 width: '100%', padding: 4, marginTop: 14

@@ -1,17 +1,43 @@
-import { View, Text } from 'react-native'
+import { SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { Stack, useLocalSearchParams } from 'expo-router'
+import ChatRoomHeader from '@/components/chatRoomHeader'
+import { Text } from 'react-native-paper'
+import ChatMessageBox from '@/components/chatMessageBox'
+import MessageCard from '@/components/messageCard'
+import { messages } from '@/models/messages'
 
 const ChatRoom = () => {
-  const { image, senderName } = useLocalSearchParams()
+  const { image, senderName, address } = useLocalSearchParams()
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={styles.body}>
       <Stack.Screen options={{
-        headerTitle: senderName.toString()
+        header: () => (
+          <ChatRoomHeader image={image} name={senderName} address={address} />
+        ),
       }} />
-      <Text>ChatRoom</Text>
-    </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.messagesContainer}>
+        {
+          messages.map((message, index) => (
+            <MessageCard message={message} key={index} />
+          ))
+        }
+      </ScrollView>
+      <ChatMessageBox senderName={senderName.toString()} />
+    </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+    paddingHorizontal: 10,
+    backgroundColor: '#fff'
+  },
+  messagesContainer: {
+    flex: 1,
+    paddingTop: 12,
+  }
+})
 
 export default ChatRoom

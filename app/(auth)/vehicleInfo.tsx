@@ -59,7 +59,7 @@ const VehicleInfo = () => {
                     {/* User input field */}
                     <View style={styles.formField}>
                         {/* vehicle make */}
-                        <TextInput labelText='Make*' placeholder='Suzuki CB1100' autoFocus />
+                        <TextInput labelText='Make*' placeholder='Suzuki CB1100' />
 
                         {/* vehicle model */}
                         <TextInput labelText='Model*' placeholder='Yamaha SR400' />

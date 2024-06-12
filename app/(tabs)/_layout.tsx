@@ -56,8 +56,12 @@ const TabsLayout = () => {
             <Tabs.Screen name="earnings"
                 options={{
                     title: 'Earnings',
-                    // headerTitleStyle: {fontSize: 20},
                     headerTitle: "My Earnings",
+                    headerTitleStyle: {
+                        fontSize: 20,
+                        fontWeight: "medium",
+                        fontFamily: "Rubik"
+                    },
                     tabBarIcon: ({ color, focused }) => (
                         <Image source={focused ? WalletActive : Wallet} />
                     )
