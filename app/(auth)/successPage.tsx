@@ -1,22 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import LottieView from 'lottie-react-native';
 import { Button, Text, useTheme } from 'react-native-paper'
 import { useLocalSearchParams, useRouter } from 'expo-router'
+import { AuthContext } from '@/context/auth';
 
 // HeadText
 // Message
 // button text
 // next screen's ID
+// action defines activities like signup etc...
 
 const windowWidth = Dimensions.get('window').width
 
 const SuccessPage = () => {
+    const { signup } = useContext(AuthContext)
+
     const theme = useTheme();
     const router = useRouter();
-    const { headText, message, buttonText, nextScreen, showButton } = useLocalSearchParams()
+    const { headText, message, buttonText, nextScreen, showButton, action } = useLocalSearchParams()
 
     const moveToNextScreen = () => {
+        if (action === 'signup') {
+            return signup()
+        }
         const nextPageLink = nextScreen.toString()
         router.push(nextPageLink)
     }

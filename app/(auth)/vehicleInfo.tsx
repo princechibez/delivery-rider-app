@@ -12,15 +12,14 @@ import { Button, RadioButton, Text, useTheme } from 'react-native-paper'
 import { useRouter } from 'expo-router';
 import DropdownSelect from 'react-native-input-select';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { AuthContext } from '@/context/auth';
 
-const windowHeight = Dimensions.get('window').height
+
+
 const windowWidth = Dimensions.get('window').width
 
 const VehicleInfo = () => {
     const theme = useTheme();
     const router = useRouter();
-    const { signup } = useContext(AuthContext)
 
     const [vehicleType, setVehicleType] = useState<string>("")
     const [vehicleMake, setVehicleMake] = useState<string>("")
@@ -31,14 +30,13 @@ const VehicleInfo = () => {
     const [vehicleYearOfPurchase, setVehicleYearOfPurchase] = useState<string>("")
 
     const registrationSuccessfullHandler = () => {
-        setTimeout(() => {
-            signup()
-        }, 2000);
         router.push({
             pathname: "(auth)/successPage", params: {
                 headText: "Information Sent",
                 message: "Your personal and vehicle information has been sent successfully, and our customer care representative will contact you within 24hrs.",
                 buttonText: "Okay",
+                showButton: "true",
+                action: 'signup',
                 nextScreen: "(tabs)"
             }
         })

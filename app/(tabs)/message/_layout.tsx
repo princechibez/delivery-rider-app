@@ -10,9 +10,17 @@ const MessageLayout = () => {
                 headerTitleStyle: { color: "#1E1E1E", fontSize: 14 },
             }}>
             {/* index */}
-            <Stack.Screen name="index" options={{ headerTitleAlign: 'left', headerTitle: "My Messages" }} />
+            <Stack.Screen name="index" options={{
+                headerTitleAlign: 'left',
+                headerTitle: "My Messages",
+                headerTitleStyle: {
+                    fontSize: 20,
+                    fontWeight: "medium",
+                    // fontFamily: "Rubik"
+                }
+            }} />
 
-            {/* personal info */}
+            {/* chat room */}
             <Stack.Screen name="chatRoom" />
         </Stack>
     )

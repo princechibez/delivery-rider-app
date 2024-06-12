@@ -28,7 +28,7 @@ const onBoard = () => {
       <ImageBackground style={Styles.imageBg} source={BgImage}>
         <View style={Styles.content}>
 
-          <Text style={{ ...Styles.headerText, fontWeight: 700 }}>
+          <Text variant='titleLarge' style={{ ...Styles.headerText }}>
             Make steady income delivering parcel or documents from places to places.
           </Text>
 
@@ -79,7 +79,6 @@ const Styles = StyleSheet.create({
     gap: 18
   },
   headerText: {
-    fontSize: 20,
     color: "#fff"
   },
   privacyView: {

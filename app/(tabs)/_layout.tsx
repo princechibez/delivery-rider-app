@@ -22,14 +22,25 @@ const TabsLayout = () => {
         <Tabs screenOptions={{
             tabBarActiveTintColor: "#FF5C00",
             tabBarInactiveTintColor: "#636363",
-            tabBarShowLabel: false,
+            // tabBarShowLabel: false,
             tabBarHideOnKeyboard: true,
+            tabBarLabelStyle: {
+                color: "#636363",
+                fontSize: 12,
+                // fontFamily: "Rubik"
+            },
+            tabBarItemStyle: {
+                height: "80%",
+                alignSelf: 'center',
+                justifyContent: 'flex-start',
+                gap: 0,
+                // marginHorizontal: 18,
+                // borderTopWidth: 3,
+                // borderTopColor: "#F97B0E"
+            },
             tabBarStyle: {
-                height: 80,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center'
+                height: 70,
+                width: "100%"
             }
         }}>
             <Tabs.Screen name="index"
@@ -45,6 +56,7 @@ const TabsLayout = () => {
             <Tabs.Screen name="earnings"
                 options={{
                     title: 'Earnings',
+                    // headerTitleStyle: {fontSize: 20},
                     headerTitle: "My Earnings",
                     tabBarIcon: ({ color, focused }) => (
                         <Image source={focused ? WalletActive : Wallet} />
@@ -55,7 +67,8 @@ const TabsLayout = () => {
                 options={{
                     headerShown: false,
                     title: 'Message',
-                    headerTitle: "My Messages",
+                    // tabBarBadge: 5,
+                    // tabBarBadgeStyle: {backgroundColor: "#000"},
                     tabBarIcon: ({ color, focused }) => (
                         <Image source={focused ? ChatActive : Chat} />
                     )
