@@ -1,23 +1,44 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
+import { Keyboard, StyleSheet, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Text, TextInput } from 'react-native-paper'
 import { FontAwesome } from '@expo/vector-icons'
 
-const ChatMessageBox = ({ senderName }: { senderName: string }) => {
+interface ChatInputProps {
+  senderName: string,
+  newMessage: (text: string) => void
+}
+
+const ChatMessageBox = ({ senderName, newMessage }: ChatInputProps) => {
+  const [text, setText] = useState<string>("")
+  const [typing, setTyping] = useState<boolean>(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTyping(true)
+    }, 2000);
+  }, [])
+
+  const setNewMessage = () => {
+    setText("")
+    newMessage(text)
+    Keyboard.dismiss()
+  }
+
   return (
     <View style={styles.inputSection}>
-      <Text variant='bodySmall'>{senderName} is typing...</Text>
+      {typing && <Text variant='bodySmall'>{senderName} is typing...</Text>}
 
       {/* <View style={styles.inputContainer}> */}
       <TextInput
+        value={text}
         outlineStyle={styles.outlineStyles}
         placeholderTextColor="#4E4E4E"
         underlineColorAndroid="transparent"
         placeholder='Type a Message'
         contentStyle={styles.contentStyle}
-        // onChangeText={(text) => searchMessages(text)}
+        onChangeText={(text) => setText(text)}
         cursorColor='#4E4E4E'
-        right={<TextInput.Icon icon="send" onPress={() => { }} />}
+        right={<TextInput.Icon icon="send" disabled={text.trim() === ""} onPress={setNewMessage} />}
         // selectionColor={useTheme().colors.secondary}
         underlineColor="transparent"
         mode="outlined" />

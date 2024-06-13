@@ -17,6 +17,7 @@ const ConversationCard = ({ index, conversation, listCount, goToChatRoom }: ICar
             onPress={goToChatRoom}
             style={{ ...styles.chatContainer, marginBottom: (index === listCount - 1) ? 32 : 14 }}
             activeOpacity={0.5}>
+
             {/* sender profile image, name and last text message */}
             <View style={styles.senderProfile}>
                 <LinearGradient
@@ -32,6 +33,7 @@ const ConversationCard = ({ index, conversation, listCount, goToChatRoom }: ICar
                     <Text variant='titleSmall' numberOfLines={1} style={{ width: "100%" }}>{conversation.lastMessage}</Text>
                 </View>
             </View>
+
             {/* message timestamp and unread count badge */}
             <View style={styles.timestamp}>
                 {conversation.unread && <Badge style={{ backgroundColor: '#000' }}>{conversation.unread}</Badge>}

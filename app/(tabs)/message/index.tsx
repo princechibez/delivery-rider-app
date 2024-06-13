@@ -9,16 +9,17 @@ const Messages = () => {
   const router = useRouter()
   const inputRef = useRef<any>().current
 
+  const [searchQuery, setSearchQuery] = useState("")
   const [messages, setMessages] = useState(conversations)
   const [filteredMessages, setFilteredMessages] = useState([...conversations, ...conversations, ...conversations])
 
   const goToChatRoom = (conversation) => {
+    setSearchQuery("")
     router.push({ pathname: "message/chatRoom", params: conversation })
   }
 
-  const searchMessages = (text) => {
+  const searchMessages = (query) => {
     if (!messages) return;
-    const query = text;
     // Include all elements which includes the search query
     const updatedList = messages.filter((message) => {
       const name = message.senderName;
@@ -32,6 +33,7 @@ const Messages = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TextInput
+        value={searchQuery}
         ref={inputRef}
         outlineStyle={styles.outlineStyles}
         placeholderTextColor="#4E4E4E"
