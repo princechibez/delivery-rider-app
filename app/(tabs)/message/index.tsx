@@ -19,6 +19,7 @@ const Messages = () => {
   }
 
   const searchMessages = (query) => {
+    setSearchQuery(query)
     if (!messages) return;
     // Include all elements which includes the search query
     const updatedList = messages.filter((message) => {
