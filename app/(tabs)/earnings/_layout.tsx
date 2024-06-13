@@ -4,7 +4,9 @@ const EarningsLayout = () => {
     return (
         <Stack
             screenOptions={{
+                headerShadowVisible: false,
                 headerTitleAlign: 'center',
+                headerStyle: { backgroundColor: 'transparent' },
                 headerTitleStyle: {
                     fontSize: 14,
                     fontWeight: "medium",
@@ -14,16 +16,22 @@ const EarningsLayout = () => {
             }}>
             {/* index */}
             <Stack.Screen name="index" options={{
-                headerShadowVisible: false
+                headerTitleAlign: 'left',
+                headerTitle: "My Earnings",
+                headerTitleStyle: {
+                    fontSize: 20
+                }
             }} />
 
             {/* shipment list */}
             <Stack.Screen name="shipmentsList" options={{
-                headerTitle: "Recent Shipments",
+                headerTitle: "Recent Shipments"
             }} />
 
             {/* shipment info */}
-            <Stack.Screen name="shipmentInfo" />
+            <Stack.Screen name="shipmentInfo" options={{
+                headerTitle: "Parcel Delivery",
+            }} />
         </Stack>
     )
 }

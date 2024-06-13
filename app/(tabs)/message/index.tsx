@@ -15,6 +15,7 @@ const Messages = () => {
 
   const goToChatRoom = (conversation) => {
     setSearchQuery("")
+    setFilteredMessages([...conversations, ...conversations, ...conversations])
     router.push({ pathname: "message/chatRoom", params: conversation })
   }
 
@@ -44,7 +45,7 @@ const Messages = () => {
         onChangeText={(text) => searchMessages(text)}
         cursorColor='#4E4E4E'
         left={<TextInput.Icon icon="search-web" />}
-        right={<TextInput.Icon icon="send" onPress={() => inputRef?.blur()} />}
+        // right={<TextInput.Icon icon="send" onPress={() => inputRef?.blur()} />}
         // selectionColor={useTheme().colors.secondary}
         underlineColor="transparent"
         mode="outlined" />
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flex: 1,
     paddingHorizontal: 10,
-    // paddingTop: 14
   },
   outlineStyles: {
     borderWidth: 0,
@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   contentStyle: {
-    color: "#4E4E4E"
+    color: "#4E4E4E",
+    fontSize: 16
   },
   chatListContainer: {
     flex: 1,
-    paddingTop: 18,
   },
 
 })

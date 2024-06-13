@@ -11,7 +11,7 @@ interface IMessageCard {
 const MessageCard = ({ message }: IMessageCard) => {
     return (
         message.myMessage ?
-            (<View style={{marginBottom: 8}}>
+            (<View style={{ marginBottom: 8 }}>
                 <View style={styles.myMessage}>
                     <Text style={styles.myMessageText}>{message.text}</Text>
                 </View>
@@ -21,7 +21,7 @@ const MessageCard = ({ message }: IMessageCard) => {
                 </View>
             </View>)
             :
-            (<View style={{marginBottom: 8}}>
+            (<View style={{ marginBottom: 8 }}>
                 <View style={styles.container}>
                     <Text>{message.text}</Text>
                 </View>
@@ -37,20 +37,21 @@ const styles = StyleSheet.create({
         maxWidth: "70%",
         marginBottom: 8,
         padding: 12,
-        paddingBottom: 4,
         backgroundColor: "#F0F4F8",
         borderRadius: 14,
         borderBottomLeftRadius: 0,
         alignItems: 'flex-start',
-        gap: 8
+        justifyContent: 'center',
+        // paddingBottom: 4,
+        // gap: 8
     },
     myMessage: {
         maxWidth: "70%",
         backgroundColor: "#EF8712",
         marginBottom: 8,
         padding: 12,
-        paddingBottom: 4,
-        gap: 8,
+        // paddingBottom: 4,
+        // gap: 8,
         borderRadius: 14,
         borderBottomRightRadius: 0,
         alignItems: 'flex-end',

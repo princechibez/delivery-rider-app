@@ -15,7 +15,7 @@ const ConversationCard = ({ index, conversation, listCount, goToChatRoom }: ICar
     return (
         <TouchableOpacity
             onPress={goToChatRoom}
-            style={{ ...styles.chatContainer, marginBottom: (index === listCount - 1) ? 32 : 14 }}
+            style={{ ...styles.chatContainer, marginTop: (index === 0) ? 18 : 0 }}
             activeOpacity={0.5}>
 
             {/* sender profile image, name and last text message */}
@@ -29,8 +29,16 @@ const ConversationCard = ({ index, conversation, listCount, goToChatRoom }: ICar
                 </LinearGradient>
                 {/* sender name and last message */}
                 <View style={{ flex: 1 }}>
-                    <Text variant='titleMedium' numberOfLines={1} style={{ width: "100%" }}>{conversation.senderName}</Text>
-                    <Text variant='titleSmall' numberOfLines={1} style={{ width: "100%" }}>{conversation.lastMessage}</Text>
+                    <Text
+                        numberOfLines={1}
+                        style={{ width: "100%", fontSize: 16 }}>
+                        {conversation.senderName}
+                    </Text>
+                    <Text
+                        numberOfLines={1}
+                        style={{ width: "100%" }}>
+                        {conversation.lastMessage}
+                    </Text>
                 </View>
             </View>
 
@@ -50,6 +58,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: '100%',
         marginBottom: 14,
+        // paddingHorizontal: 4,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -62,8 +71,8 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     profileImageWrap: {
-        height: '100%',
-        width: 60,
+        height: 50,
+        width: 50,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50

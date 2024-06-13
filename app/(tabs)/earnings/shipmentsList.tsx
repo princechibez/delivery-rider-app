@@ -1,14 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
+import ShipmentCard from '@/components/shipmentCard'
+import { router } from 'expo-router'
 
 const ShipmentList = () => {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>ShipmentList</Text>
-        </View>
+        <SafeAreaView style={styles.body}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={{ paddingTop: 18 }}>
+                    {
+                        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map(e => (
+                            <ShipmentCard pressed={() => { router.push("(tabs)/earnings/shipmentInfo") }} />
+                        ))
+                    }
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 
-export default ShipmentList
+const styles = StyleSheet.create({
+    body: {
+        flex: 1,
+        paddingHorizontal: 12,
+    }
 
-const styles = StyleSheet.create({})
+})
+
+export default ShipmentList
