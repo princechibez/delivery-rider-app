@@ -33,12 +33,12 @@ const UpdateEmail = () => {
 
                 {/* User input field */}
                 <View style={styles.formField}>
-                    <TextInput labelText='Enter email address*' autoFocus />
+                    <TextInput labelText='Enter email address*' />
                 </View>
             </View>
 
 
-            <Text style={{ color: '#646464', marginVertical: 14, fontSize: 12 }}>
+            <Text style={{ color: '#646464', marginVertical: 8, fontSize: 11}}>
                 Note that we will never send anything without your consent
             </Text>
             <Button mode='contained'

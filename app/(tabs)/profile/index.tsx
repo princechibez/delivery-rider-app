@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     width: windowWidth,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 24 : 24,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight + 8 : 8,
     alignItems: 'center',
   },
   SectionWrapper: {

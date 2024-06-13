@@ -1,5 +1,6 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 import { Text, TextInput as Input, useTheme } from "react-native-paper"
 import PhoneInput from "react-native-phone-number-input";
 
@@ -16,7 +17,7 @@ interface PasswordInputProps {
   showForgotPassword?: boolean
 }
 
-type Props = React.ComponentProps<typeof Input> & { errorText?: string; labelText: string };
+type Props = React.ComponentProps<typeof Input> & { errorText?: string; labelText?: string };
 
 
 // const theme = useTheme();
@@ -86,9 +87,9 @@ export const PhoneNumberInput = (props: PhoneNumberInputProps) => {
 
 export const TextInput = ({ errorText, labelText, ...props }: Props) => (
   <View>
-    <Text style={styles.labelStyle}>
+    {labelText ? <Text style={styles.labelStyle}>
       {labelText}
-    </Text>
+    </Text> : null}
     <Input
       outlineStyle={styles.outlineStyles}
       placeholderTextColor="#646464"

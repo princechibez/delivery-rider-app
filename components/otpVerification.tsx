@@ -19,7 +19,6 @@ const OTPVerification = ({ setCode, inputCount }: { setCode: (text: string) => v
                 caretHidden
                 ref={otpInputRef}
                 inputCount={inputCount}
-                autoFocus
                 tintColor={theme.colors.secondary}
                 offTintColor="#878787"
                 handleTextChange={(text) => setCode(text)}

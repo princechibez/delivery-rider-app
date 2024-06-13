@@ -43,7 +43,7 @@ const ProfileSetup = () => {
                     {/* User input field */}
                     <View style={styles.formField}>
                         {/* firstname */}
-                        <TextInput labelText='First Name*' placeholder='Firstname' autoFocus />
+                        <TextInput labelText='First Name*' placeholder='Firstname' />
 
                         {/* lastname */}
                         <TextInput labelText='Last Name*' placeholder='Lastname' />

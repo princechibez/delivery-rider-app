@@ -3,7 +3,8 @@ import { Slot } from "expo-router";
 import { StatusBar } from "react-native";
 import {
   MD3LightTheme as DefaultTheme,
-  PaperProvider
+  PaperProvider,
+  configureFonts
 } from 'react-native-paper'
 import * as SystemUI from 'expo-system-ui'
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -12,8 +13,30 @@ SystemUI.setBackgroundColorAsync("#fffff")
 
 const RootLayout = () => {
 
+  const fontConfig = {
+    default: {
+      regular: {
+        fontFamily: 'Rubik',
+        fontWeight: 'normal',
+      },
+      // medium: {
+      //   fontFamily: 'sans-serif-medium',
+      //   fontWeight: 'normal',
+      // },
+      // light: {
+      //   fontFamily: 'sans-serif-light',
+      //   fontWeight: 'normal',
+      // },
+      // thin: {
+      //   fontFamily: 'sans-serif-thin',
+      //   fontWeight: 'normal',
+      // },
+    },
+  };
+
   const theme = {
     ...DefaultTheme,
+    fonts: configureFonts({ config: { fontFamily: "Rubik" } }),
     roundness: 8,
     colors: {
       ...DefaultTheme.colors,

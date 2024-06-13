@@ -34,7 +34,7 @@ const VehicleDetails = () => {
 
                 {/* User input field */}
                 <View style={styles.formField}>
-                    <TextInput labelText='Vehicle Registration Number*' placeholder='KTU671GU' autoFocus />
+                    <TextInput labelText='Vehicle Registration Number*' placeholder='KTU671GU' />
                 </View>
             </View>
 
